@@ -1,5 +1,6 @@
 package com.employee.EmployeeRestJPA.controller;
 
+import com.employee.EmployeeRestJPA.entity.ProjectEntity;
 import com.employee.EmployeeRestJPA.model.EmployeeModel;
 import com.employee.EmployeeRestJPA.service.EmployeeService;
 import jakarta.validation.Valid;
@@ -23,20 +24,26 @@ public class EmployeeController {
 
     @GetMapping("/get-by-id/{id}")
     public EmployeeModel getById(@PathVariable String id) {
+
         return employeeService.getById(id);
     }
 
     @DeleteMapping("/delete-by-id/{id}")
     public void deleteById(@PathVariable String id) {
+
         employeeService.deleteById(id);
     }
 
     @GetMapping("/getAll")
     public List<EmployeeModel> getAll() {
+
         return employeeService.getAll();
     }
     @GetMapping("/get-by-district-and-state/{state}/{district}")
     public List<EmployeeModel> getByDistrictAndState(@PathVariable String state,@PathVariable String district){
-return employeeService.getByDistrictAndState(district, state);
+        return employeeService.getByDistrictAndState(district, state);
     }
+
+
+
 }

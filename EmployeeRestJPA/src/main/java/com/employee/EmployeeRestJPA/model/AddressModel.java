@@ -16,6 +16,7 @@ public class AddressModel {
     private String state;
 
     public AddressModel() {
+
     }
 
     @Override
@@ -35,26 +36,32 @@ public class AddressModel {
 
 
     public String getHouseNo() {
+
         return houseNo;
     }
 
     public void setHouseNo(String houseNo) {
+
         this.houseNo = houseNo;
     }
 
     public String getDistrict() {
+
         return district;
     }
 
     public void setDistrict(String district) {
+
         this.district = district;
     }
 
     public String getState() {
+
         return state;
     }
 
     public void setState(String state) {
+
         this.state = state;
     }
 
