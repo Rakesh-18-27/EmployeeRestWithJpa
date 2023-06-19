@@ -22,7 +22,7 @@ public class ProjectServiceImpl implements ProjectService{
     @Autowired
     private ProjectRepository projectRepository;
     @Override
-    public String addProject(String id, ProjectEntity projectEntity) {
+    public String addProject( ProjectEntity projectEntity) {
         String startDate=projectEntity.getStartingDate();
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate dateStarting=LocalDate.parse(startDate,dateTimeFormatter);
@@ -37,17 +37,9 @@ public class ProjectServiceImpl implements ProjectService{
             String durationPeriod=duration.getYears()+" years "+duration.getMonths()+" months "+duration.getDays()+" days ";
             projectEntity.setDurationInDays(durationPeriod);
         }
+        ProjectEntity projectEntity1= projectRepository.save(projectEntity);
+            return "project added successfully";
 
-
-        Optional<EmployeeEntity> employeeEntity=employeeRepository.findById(id);
-        if(employeeEntity.isPresent()){
-            EmployeeEntity employee=employeeEntity.get();
-            employee.setProjectEntities(projectEntity);
-            EmployeeEntity updatedEmployee=employeeRepository.save(employee);
-            return "Project Added Successfully to :"+employee.getName();
-
-        }
-        return null;
     }
 
     @Override

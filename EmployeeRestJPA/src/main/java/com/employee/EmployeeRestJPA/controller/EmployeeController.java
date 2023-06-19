@@ -44,6 +44,22 @@ public class EmployeeController {
         return employeeService.getByDistrictAndState(district, state);
     }
 
+    @GetMapping("/get-employees-by-projectname/{name}")
+    public List<EmployeeModel> getEmployeesByProject(@PathVariable String name){
+return employeeService.getEmployeesByProjectName(name);
+    }
+
+    @PutMapping("add-project-to-employee/{projectId}/{employeeId}")
+    public ResponseEntity<String> addprojectToEmployee(@PathVariable Integer projectId,@PathVariable String employeeId  ){
+        String result=employeeService.addProjectToEmployee(projectId, employeeId);
+return ResponseEntity.status(HttpStatus.ACCEPTED).body(result);
+    }
+
+    @GetMapping("/get-project-by-employeeId/{id}")
+    public ResponseEntity<String> getProjectByEmployeeId(@PathVariable String id){
+         String result=employeeService.getProjectByEmployeeId(id);
+         return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 
 
 }

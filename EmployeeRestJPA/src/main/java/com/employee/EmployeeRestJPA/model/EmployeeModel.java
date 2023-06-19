@@ -27,17 +27,17 @@
             this.role = role;
         }
 
-        public List<ProjectEntity> getProjectEntities() {
-            return projectEntities;
+        public ProjectEntity getProjectEntities() {
+            return projectEntity;
         }
 
-        public void setProjectEntities(List<ProjectEntity> projectEntities) {
-            this.projectEntities = projectEntities;
+        public void setProjectEntities(ProjectEntity projectEntities) {
+            this.projectEntity = projectEntities;
         }
 
         @Valid
         private AddressModel addressModel;
-        private List<ProjectEntity> projectEntities=new ArrayList<>();
+       private ProjectEntity projectEntity;
 
         public EmployeeModel(AddressModel addressModel) {
             this.addressModel=addressModel;
@@ -81,7 +81,7 @@
                     ", role='" + role + '\'' +
                     ", salary=" + salary +
                     ", addressModel=" + addressModel +
-                    ", projectEntities=" + projectEntities +
+                    ", projectEntities=" + projectEntity +
                     '}';
         }
 
@@ -89,13 +89,13 @@
             this.addressModel = addressModel;
         }
 
-        public EmployeeModel(String id, String name, String role, Double salary, AddressModel addressModel, List<ProjectEntity> projectEntities) {
+        public EmployeeModel(String id, String name, String role, Double salary, AddressModel addressModel, ProjectEntity projectEntity) {
             this.id = id;
             this.name = name;
             this.role = role;
             this.salary = salary;
             this.addressModel = addressModel;
-            this.projectEntities = projectEntities;
+            this.projectEntity = projectEntity;
         }
 
         public EmployeeModel(String name, Double salary, AddressModel addressModel) {

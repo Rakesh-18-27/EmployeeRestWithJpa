@@ -1,5 +1,7 @@
 package com.employee.EmployeeRestJPA.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class EmployeeEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private AddressEntity addressEntity;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     private ProjectEntity projectEntity;
 
     public String getId() {
@@ -56,12 +58,14 @@ public class EmployeeEntity {
     public void setRole(String role) {
         this.role = role;
     }
+@JsonBackReference
+    public ProjectEntity getProjectEntity() {
 
-    public ProjectEntity getProjectEntities() {
         return projectEntity;
     }
 
-    public void setProjectEntities(ProjectEntity projectEntity) {
+    public void setProjectEntity(ProjectEntity projectEntity) {
+
         this.projectEntity = projectEntity;
     }
 

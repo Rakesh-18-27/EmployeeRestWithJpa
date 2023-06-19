@@ -1,6 +1,7 @@
 package com.employee.EmployeeRestJPA.controller;
 
 import com.employee.EmployeeRestJPA.entity.ProjectEntity;
+import com.employee.EmployeeRestJPA.model.EmployeeModel;
 import com.employee.EmployeeRestJPA.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,9 @@ import java.util.List;
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
-    @PostMapping("/add-project/{id}")
-    public ResponseEntity<String> addProject(@PathVariable String id, @RequestBody ProjectEntity projectEntity){
-        String result= projectService.addProject(id,projectEntity);
+    @PostMapping("/add-project")
+    public ResponseEntity<String> addProject( @RequestBody ProjectEntity projectEntity){
+        String result= projectService.addProject(projectEntity);
 return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
@@ -24,4 +25,7 @@ return ResponseEntity.status(HttpStatus.CREATED).body(result);
     public List<ProjectEntity> getProjects(){
     return projectService.getProjects();
     }
+
+
+
 }

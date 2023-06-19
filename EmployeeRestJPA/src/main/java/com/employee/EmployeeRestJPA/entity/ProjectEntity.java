@@ -1,6 +1,8 @@
 package com.employee.EmployeeRestJPA.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
@@ -21,15 +23,19 @@ public class ProjectEntity {
     private String endingDate;
 
     private String durationInDays;
+
     @OneToMany(mappedBy = "projectEntity",fetch = FetchType.LAZY)
     List<EmployeeEntity> employeeEntities=new ArrayList<>();
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(name = "project_technologies",
-    joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "technology_id")
-    )
-    @JsonManagedReference
-    private List<TechnologyEntity> technologies=new ArrayList<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//
+//    @JoinTable(name = "project_technologies",
+//            joinColumns = @JoinColumn(name = "project_id"),
+//            inverseJoinColumns = @JoinColumn(name = "technology_id")
+//    )
+//    private List<TechnologyEntity> technologies = new ArrayList<>();
+
+
+
 
     public Integer getId() {
         return id;
@@ -68,24 +74,27 @@ public class ProjectEntity {
     }
 
     public void setDurationInDays(String durationInDays) {
+
         this.durationInDays = durationInDays;
     }
-
+@JsonManagedReference
     public List<EmployeeEntity> getEmployeeEntities() {
+
         return employeeEntities;
     }
 
     public void setEmployeeEntities(List<EmployeeEntity> employeeEntities) {
         this.employeeEntities = employeeEntities;
     }
+//@JsonManagedReference
+//    public List<TechnologyEntity> getTechnologies() {
+//
+//        return technologies;
+//    }
 
-    public List<TechnologyEntity> getTechnologies() {
-        return technologies;
-    }
-
-    public void setTechnologies(List<TechnologyEntity> technologies) {
-        this.technologies = technologies;
-    }
+//    public void setTechnologies(List<TechnologyEntity> technologies) {
+//        this.technologies = technologies;
+//    }
 
     public ProjectEntity(Integer id, String name, String startingDate, String endingDate, String durationInDays, List<EmployeeEntity> employeeEntities, List<TechnologyEntity> technologies) {
         this.id = id;
@@ -94,7 +103,7 @@ public class ProjectEntity {
         this.endingDate = endingDate;
         this.durationInDays = durationInDays;
         this.employeeEntities = employeeEntities;
-        this.technologies = technologies;
+//        this.technologies = technologies;
     }
 
     public ProjectEntity() {
@@ -109,7 +118,7 @@ public class ProjectEntity {
                 ", endingDate='" + endingDate + '\'' +
                 ", durationInDays=" + durationInDays +
                 ", employeeEntities=" + employeeEntities +
-                ", technologies=" + technologies +
+//                ", technologies=" + technologies +
                 '}';
     }
 }

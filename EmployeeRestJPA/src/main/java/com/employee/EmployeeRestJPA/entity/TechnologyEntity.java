@@ -1,6 +1,8 @@
 package com.employee.EmployeeRestJPA.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -15,9 +17,13 @@ public class TechnologyEntity {
     private Integer id;
     private String name;
     private String version;
-    @ManyToMany(mappedBy = "technologies",fetch = FetchType.LAZY)
-    @JsonBackReference
-    private List<ProjectEntity> projects = new ArrayList<>();
+
+
+
+
+//    @ManyToMany(mappedBy = "technologies",fetch = FetchType.LAZY)
+//    private List<ProjectEntity> projects = new ArrayList<>();
+
 
     public Integer getId() {
         return id;
@@ -42,20 +48,21 @@ public class TechnologyEntity {
     public void setVersion(String version) {
         this.version = version;
     }
+//    @JsonBackReference
+//    public List<ProjectEntity> getProjects() {
+//
+//        return projects;
+//    }
 
-    public List<ProjectEntity> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(List<ProjectEntity> projects) {
-        this.projects = projects;
-    }
+//    public void setProjects(List<ProjectEntity> projects) {
+//        this.projects = projects;
+//    }
 
     public TechnologyEntity(Integer id, String name, String version, List<ProjectEntity> projects) {
         this.id = id;
         this.name = name;
         this.version = version;
-        this.projects = projects;
+//        this.projects = projects;
     }
 
     public TechnologyEntity() {
@@ -67,7 +74,7 @@ public class TechnologyEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", version='" + version + '\'' +
-                ", projects=" + projects +
+//                ", projects=" + projects +
                 '}';
     }
 }
